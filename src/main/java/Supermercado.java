@@ -81,9 +81,8 @@ public class Supermercado {
                 '}';
     }
     //============Clientes============
+
     //verificar clientes
-
-
     public boolean verificarCliente(String documentoIdentidad) {
         boolean existe = false;
         for (Cliente cliente : listaClientes) {
@@ -117,6 +116,7 @@ public class Supermercado {
     }
 
     //============Productos============
+
     // verificar productos
     public boolean verificarProducto(String codigo) {
         boolean existe = false;
@@ -151,6 +151,7 @@ public class Supermercado {
     }
 
     //============Compras============
+
     //verificar compras
     public boolean verificarCompra(String codigo) {
         boolean existe = false;
@@ -214,7 +215,7 @@ public class Supermercado {
         compra.setValorTotal(total);
         return total;
     }
-
+    //agregar un producto a una compra
     public boolean agregarProductoCompra(Compra compra, Producto producto) {
         boolean agregado = false;
         boolean disponible = verificarDisponibilidad(compra, producto);
@@ -225,14 +226,38 @@ public class Supermercado {
         }
         return agregado;
     }
+    //confirmar compra (actualiza el inventario)
+    public boolean confirmarCompra(Compra compra) {
+        boolean confirmada = false;
+        if (compra.isConfirmada() == false && compra.getListaProductos().isEmpty() == false) {
+            for (Producto producto : compra.getListaProductos()) {
+                producto.setCantidadDisponible(producto.getCantidadDisponible() - 1);
+            }
+            compra.setConfirmada(true);
+            confirmada = true;
+        }
+        return confirmada;
+    }
+    //obtener las compras de un cliente
+    public List<Compra> obtenerComprasCliente(String documento) {
+        List<Compra> comprasCliente = new ArrayList<>();
+        for (Compra compra : listaCompras) {
+            if (compra.getCliente().getDocumentoIdentidad().equals(documento)) {
+                comprasCliente.add(compra);
+            }
+        }
+        return comprasCliente;
+    }
+    //calcular el total vendido en una fecha
+    public double calcularTotalVendidoPorFecha(LocalDate fecha) {
+        double total = 0;
+        for (Compra compra : listaCompras) {
+            if (compra.getFecha().equals(fecha)) {
+                total = total + compra.getValorTotal();
+            }
+        }
+        return total;
+    }
 }
 
 
-
-
-
-
-
-
-
-}

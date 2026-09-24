@@ -7,7 +7,7 @@ public class Cliente {
 
     public Cliente(String nombre, String documentoIdentidad, String telefono, String correoElectronico) {
         this.nombre = nombre;
-        this.documentoIdentidad =
+        this.documentoIdentidad =documentoIdentidad;
         this.telefono= telefono;
         this.correoElectronico= correoElectronico;
     }

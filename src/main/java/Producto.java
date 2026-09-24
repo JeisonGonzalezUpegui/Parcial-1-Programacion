@@ -6,11 +6,12 @@ public class Producto {
     private int cantidadDisponible;
     private CategoriaProducto categoria;
 
-    public Producto(String codigo, String nombre, double precio, int cantidadDisponible) {
+    public Producto(String codigo, String nombre, double precio, int cantidadDisponible, CategoriaProducto categoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
         this.cantidadDisponible = cantidadDisponible;
+        this.categoria = categoria;
     }
 
     public String getCodigo() {

@@ -6,6 +6,8 @@ public class Compra {
     private LocalDate fecha;
     private double valorTotal;
 
+    private MetodoPago metadoPago;
+
     public Compra(String codigo, LocalDate fecha, double valorTotal) {
         this.codigo = codigo;
         this.fecha = fecha;

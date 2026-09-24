@@ -44,3 +44,85 @@ public class Supermercado {
         return listaClientes;
     }
 
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
+
+    public ArrayList<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(ArrayList<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
+    //Metodos
+    public boolean verificarCliente(String documentoIdentidad) {
+        boolean existe = false;
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getDocumentoIdentidad().equals(documentoIdentidad)) {
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
+
+    public boolean agregarCliente(Cliente cliente) {
+        boolean agregado = false;
+        boolean existe = verificarCliente(cliente.getDocumentoIdentidad());
+        if (existe == false) {
+            listaClientes.add(cliente);
+            agregado = true;
+        }
+        return agregado;
+    }
+
+    public boolean verificarProducto(String codigo) {
+        boolean existe = false;
+        for (Producto producto : listaProductos) {
+            if (producto.getCodigo().equals(codigo)) {
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
+
+    public boolean agregarProducto(Producto producto) {
+        boolean agregado = false;
+        boolean existe = verificarProducto(producto.getCodigo());
+        if (existe == false) {
+            listaProductos.add(producto);
+            agregado = true;
+        }
+        return agregado;
+    }
+
+    public Cliente buscarCliente(String documento) {
+        for (Cliente c : listaClientes) {
+            if (c.getDocumentoIdentidad().equals(documento)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Producto buscarProducto(String codigo) {
+        for (Producto p : listaProductos) {
+            if (p.getCodigo().equals(codigo)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Supermercado{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
+}

@@ -1,14 +1,20 @@
 
+import java.util.ArrayList;
+
 public class Supermercado {
     //Atributos
     private String nombre;
     private String direccion;
     private String telefono;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<Producto> productos;
 
     public Supermercado(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.clientes = new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -33,6 +39,41 @@ public class Supermercado {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
+    }
+
+    //Métodos de búsqueda
+    public Cliente buscarCliente(String documento) {
+        for (Cliente c : clientes) {
+            if (c.getDocumentoIdentidad().equals(documento)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Producto buscarProducto(String codigo) {
+        for (Producto p : productos) {
+            if (p.getCodigo().equals(codigo)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     @Override

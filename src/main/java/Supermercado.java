@@ -20,6 +20,7 @@ public class Supermercado {
         }
         return agregado;
     }
+    //cambaira restar
     public boolean verificarProducto(String codigo){
         boolean existe=false;
         for(Producto producto: listaProductos){
@@ -40,4 +41,6 @@ public class Supermercado {
         }
         return agregado;
     }
+
+    public boolean actualizarProducto()
 }
